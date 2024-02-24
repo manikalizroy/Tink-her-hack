@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Questionnaire</title>
+    <link rel="stylesheet" href="adult.css"> <!-- You can link your stylesheet here -->
+</head>
+<body>
+
+<div class="container">
+    <h1>Mental Health Questionnaire</h1>
+
+    <form id="mentalHealthForm">
+        <label for="stress">
+            <input type="checkbox" id="stress" name="issues[]" value="Stress">
+            there are particular situations that trigger anxiety for you
+        </label>
+
+        <label for="anxiety">
+            <input type="checkbox" id="anxiety" name="issues[]" value="Anxiety">
+            you have trouble sleeping and changes in appetite
+        </label>
+
+        <label for="depression">
+            <input type="checkbox" id="depression" name="issues[]" value="Depression">
+            you feel overwhelmed by work or personal responsibilities
+        </label>
+
+        <label for="loneliness">
+            <input type="checkbox" id="loneliness" name="issues[]" value="Loneliness">
+            there conflicts and challenges in your relationships that concern you
+        </label>
+
+        <label for="self_esteem">
+            <input type="checkbox" id="self_esteem" name="issues[]" value="Low Self-Esteem">
+            you are worried about specific aspects of your future
+        </label>
+
+        <label for="burnout">
+            <input type="checkbox" id="burnout" name="issues[]" value="Burnout">
+            you feel a lack of energy or motivation for tasks you used to enjoy
+        </label>
+
+
+        <input type="button" value="Submit" onclick="processForm()">
+    </form>
+
+    <div id="resultContainer"></div>
+    <script>
+        function processForm() {
+            var checkboxes = document.getElementsByName('issues[]');
+            var checkedCount = 0;
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checkedCount++;
+                }
+            }
+
+            var resultContainer = document.getElementById('resultContainer');
+            resultContainer.innerHTML = '';
+
+            if (checkedCount > 3) {
+                resultContainer.innerHTML = "<p>You have selected more than 4 issues. It's recommended to attend a consultation for further assistance.</p>";
+            } else {
+                resultContainer.innerHTML = "<p>Thank you for completing the questionnaire. If you have concerns, consider seeking support.</p>";
+            }
+        }
+    </script>
+</div>
